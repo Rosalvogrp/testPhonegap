@@ -12,15 +12,33 @@
 </head>
 
 <body>
+	<script>
+	function json(){
+		$.getJSON('http://cors.io/?http://rosalvo.aluno.ninja/teste.php', function(data){
+			for(var i=0; i<data.length; i++){
+				$('.result').append(data[i].fumaca);
+				var fum = data[i].fumaca;
+			}
+			
+			if(fum>=250){
+				alert(fum+"ta pegando fogo bixo");
+				navigator.notification.beep(3);
+			}
+		})
+	}
+	</script>
     <div class="app">
         <h1>ArduSmoke</h1>
-        <div id="deviceready">
-			<a href="principal.html">Página Principal</a>
-        </div>
+		<hr>
+		<h3>IFSC - Tec.Info</h3>
+		<button onclick="json()">json</button>
+		<div id="result" class="result"></div>
     </div>
+	<script src="libs/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
+		json();
         app.initialize();
     </script>
 </body>
